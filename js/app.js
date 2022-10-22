@@ -87,6 +87,25 @@ function setNavHandler(parentEl, handler) {
 }
 
 // Add class 'active' to section when near top of viewport
+function isSectionInView(sections) {
+  let sectionObserver;
+
+  const observerOptions = {
+    root: null,
+    threshold: 0.7,
+  };
+  sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        return entry.target.classList.add("active-section");
+      } else {
+        return entry.target.classList.remove("active-section");
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach((section) => sectionObserver.observe(section));
+}
 
 // Scroll to anchor ID using scrollTO event
 function scrollToSection(e) {
@@ -101,10 +120,11 @@ function scrollToSection(e) {
  * Begin Events
  *
  */
+// Build menu
 initNav(navbarList, sections);
 
-// Build menu
 // Scroll to section on link click
 setNavHandler(navbarList, scrollToSection);
 
 // Set sections as active
+isSectionInView(sections);
