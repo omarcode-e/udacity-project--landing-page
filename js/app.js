@@ -25,6 +25,8 @@
  */
 const navbarList = document.querySelector("#navbar__nav");
 const sections = document.querySelectorAll("[data-nav]");
+const scrollToTopButton = document.querySelector("#btn-scroll-to-top");
+const section2 = document.querySelector("#section2");
 /**
  * End Global Variables
  * Start Helper Functions
@@ -56,6 +58,17 @@ function renderElement(tag, parentElement, textContent = "", attributes = {}) {
   return newElement;
 }
 
+function throttle(cb, delay = 1000) {
+  let isWaiting = false;
+  return function (...arg) {
+    if (isWaiting) return;
+    isWaiting = true;
+    cb(...arg);
+    setTimeout(() => {
+      isWaiting = false;
+    }, delay);
+  };
+}
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -108,12 +121,61 @@ function isSectionInView(sections) {
 }
 
 // Scroll to anchor ID using scrollTO event
-function scrollToSection(e) {
+function goToSection(e) {
   if (e.target.className !== "nav__link") return;
   e.preventDefault();
   const currentSection = document.querySelector(e.target.hash);
   return currentSection.scrollIntoView({ behavior: "smooth", block: "center" });
 }
+
+/**
+ * Start Scroll-to-top Main function
+ */
+// function showScrollToTopButton(element, target, utilityClass) {
+//   let windowObserver;
+//   const observerOptions = {
+//     root: null,
+//     threshold: 0.3,
+//   };
+//   windowObserver = new IntersectionObserver((entries) => {
+//     entries.forEach((entry) => {
+//       if (entry.isIntersecting || entry.boundingClientRect.y < -440) {
+//         return element.classList.add(utilityClass);
+//       }
+//       if (entry.boundingClientRect.y > 462) {
+//         return element.classList.remove(utilityClass);
+//       }
+//     });
+//   }, observerOptions);
+//   windowObserver.observe(target);
+// }
+
+function showGoTopButton(element) {
+  if (window.scrollY > 545) {
+    return element.classList.remove("hidden");
+  } else {
+    return element.classList.add("hidden");
+  }
+}
+
+const updateWindowScrollTop = throttle(showGoTopButton, 500);
+
+function scrollToTop(e) {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function setGoTopButtonEvents(element, handler) {
+  element.addEventListener("click", (e) => {
+    handler(e);
+  });
+
+  window.addEventListener("scroll", () => {
+    updateWindowScrollTop(element);
+  });
+}
+/**
+ * End Scroll-to-top Main function
+ */
 
 /**
  * End Main Functions
@@ -124,7 +186,8 @@ function scrollToSection(e) {
 initNav(navbarList, sections);
 
 // Scroll to section on link click
-setNavHandler(navbarList, scrollToSection);
+setNavHandler(navbarList, goToSection);
 
 // Set sections as active
 isSectionInView(sections);
+setGoTopButtonEvents(scrollToTopButton, scrollToTop);

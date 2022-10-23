@@ -21,6 +21,22 @@ body {
   color: #fff;
 }
 
+#btn-scroll-to-top {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  z-index: 1;
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+  background-color: white;
+  opacity: 1;
+  transition: opacity 200ms ease-in-out;
+}
+
 /* Typeography General*/
 h1 {
   font-family: "Fira Sans", sans-serif;
@@ -231,4 +247,8 @@ section.active-section .landing__container::after {
   to {
     transform: rotate(360deg) translate(-1em) rotate(-360deg);
   }
+}
+
+#btn-scroll-to-top.hidden {
+  opacity: 0;
 }
