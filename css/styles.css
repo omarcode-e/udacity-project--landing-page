@@ -21,22 +21,6 @@ body {
   color: #fff;
 }
 
-#btn-scroll-to-top {
-  position: fixed;
-  bottom: 5%;
-  right: 5%;
-  z-index: 1;
-  cursor: pointer;
-  outline: 0;
-  border: 0;
-  border-radius: 2rem;
-  padding: 0.5rem;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
-  background-color: white;
-  opacity: 1;
-  transition: opacity 200ms ease-in-out;
-}
-
 /* Typeography General*/
 h1 {
   font-family: "Fira Sans", sans-serif;
@@ -68,7 +52,7 @@ main {
   margin: 10vh 1em 10vh;
 }
 
-.main-hero {
+.main__hero {
   min-height: 40vh;
   padding-top: 3em;
 }
@@ -81,6 +65,17 @@ section {
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  background-color: white;
+  opacity: 1;
+  transition: opacity 300ms ease;
+}
+
 .navbar ul {
   padding-left: 0;
   margin: 0;
@@ -105,13 +100,26 @@ section {
   transition: ease 0.3s all;
 }
 
+#btn-scroll-to-top {
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+  z-index: 1;
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+  background-color: white;
+  opacity: 1;
+  transition: opacity 200ms ease-in-out;
+}
+
 /* Header Styles */
 .page__header {
-  background: #fff;
-  position: fixed;
-  top: 0;
+  background: white;
   width: 100%;
-  z-index: 5;
 }
 
 /* Footer Styles */
@@ -249,6 +257,7 @@ section.active-section .landing__container::after {
   }
 }
 
-#btn-scroll-to-top.hidden {
+#btn-scroll-to-top.hidden,
+.navbar.hidden {
   opacity: 0;
 }
