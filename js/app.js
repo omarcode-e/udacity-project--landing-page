@@ -1,4 +1,5 @@
 "use strict";
+
 /**
  *
  * Manipulating the DOM exercise.
@@ -28,6 +29,7 @@ const sections = document.querySelectorAll("[data-nav]");
 const scrollToTopButton = document.querySelector("#btn-scroll-to-top");
 const section2 = document.querySelector("#section2");
 const navbar = document.querySelector(".navbar");
+
 /**
  * End Global Variables
  * Start Helper Functions
@@ -74,7 +76,6 @@ function renderElement(tag, parentElement, textContent = "", attributes = {}) {
  * @param {number} delay Set time to delay the execution of callback function.
  * @returns {function} Function that accept a list of arguments to be passed to the callback function.
  */
-
 function throttle(cb, delay = 1000) {
   // first time the callback function will execute immediately
   let isWaiting = false;
@@ -116,7 +117,6 @@ function debounce(cb, delay = 1000) {
  * Begin Main Functions
  *
  */
-
 // build the nav
 /**
  * Render Navigation element and inserted to
@@ -140,6 +140,7 @@ function renderNavItem(parentEl, navLinktext, navLinkAttrValue) {
  * @return {undefined} undefined.
  */
 function initNavFromSections(parentEl, sections) {
+  const docFragment = document.createDocumentFragment();
   // if sections array is empty, bail.
   if (!sections) return;
   // loop over each section element.
@@ -157,11 +158,12 @@ function initNavFromSections(parentEl, sections) {
      * render navigation item from each section, pass section's
      * attribute value as text and section's id value as reference.
      */
-    renderNavItem(parentEl, sectionHeading, {
+    renderNavItem(docFragment, sectionHeading, {
       class: "nav__link",
       href: sectionId,
     });
   });
+  parentEl.append(docFragment);
 }
 
 /**
