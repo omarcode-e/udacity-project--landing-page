@@ -1,13 +1,30 @@
-# Landing Page Project
+# Project title
 
-## Table of Contents
+landing page
 
-* [Instructions](#instructions)
+# Table of contents
 
-## Instructions
+- [Project title](#project-title)
+- [Project description](#project-description)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
 
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+# Project description
 
-To get started, open `js/app.js` and start building out the app's functionality
+Dynamicaly built landing page's navigation bar from sections of the page.
 
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+# Usage
+
+- **Navigation behavior**: Click on any of navigation items should scroll
+  the page to the section referenced to by the navigation item and display
+  active state of the section.
+
+- **Go to top button**: Page has a go-to-top button that shows up after
+  scrolling a certain length of the page, clicking it scroll user to top of the page.
+
+- **Navigatioin bar visibility**: If the user is scrolling the page navigation bar should
+  disappears and shows up after the user had stopped scrolling.
+
+# Dependencies
+
+none
